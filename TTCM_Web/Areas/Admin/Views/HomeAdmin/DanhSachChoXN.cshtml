@@ -1,0 +1,80 @@
+﻿@model IEnumerable<TTCM_Web.Models.THoaDonBan>
+
+@{
+    ViewData["Title"] = "DanhSachChoXN";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Danh Sách Cần Xác Nhận</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Thêm mới</h5>
+        <div class="table-responsive">
+            <table id="zero_config" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            Ngày
+                        </th>
+                        <th>
+                            Tổng tiền
+                        </th>
+                        <th>
+                            Giảm giá hóa đơn
+                        </th>
+
+                        </th>
+                        <th>
+                            trang thái đơn hàng
+                        </th>
+                        <th>
+                            Mã khách hàng
+                        </th>
+                        <th>
+                            Mã nhân viên
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NgayHoaDon)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TongTienHd)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GiamGiaHd)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GhiChu)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaKhachHangNavigation.MaKhanhHang)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaNhanVienNavigation.MaNhanVien)
+                            </td>
+                            <td>
+                               
+                                <a class="btn btn-success" asp-action="Details" href="@Url.Action("ChiTietHoaDon","Admin",new{mahd=@item.MaHoaDon})">Từ chối</a>
+                                <a class="btn btn-success" onclick="xn()">Xác nhận</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

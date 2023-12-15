@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@model IEnumerable<TTCM_Web.Models.TDanhMucSp>
+
+
+<h1>DanhMucSanPham</h1>
+<p><a href="/Admin/SanPham/ThemSanPham">Create</a> |</p>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Thêm mới</h5>
+        <div class="table-responsive">
+            <table id="zero_config" class="table table-striped table-bordered">
+                
+                <thead>
+                    <tr>
+                        <th>
+                            Ảnh đại diện
+                        </th>
+                        <th>
+                            Tên Sản Phẩm
+                        </th>
+                        <th>
+                            Thời gian Bảo Hành
+                        </th>
+                        <th>
+                            Giới thiệu sản phẩm
+                        </th>
+
+                        <th>
+                            Giá nhập
+                        </th>
+                        <th>
+                            Giá Bán
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+
+                                <img src="../../access/images/@item.AnhDaiDien" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenSp)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ThoiGianBaoHanh)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GioiThieuSp)
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GiaNhoNhat)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GiaLonNhat)
+                            </td>
+                            <td>
+
+                                <a href="@Url.Action("ChiTiet","Admin",new{maSp=item.MaSp})">View</a> |
+                                <a href="@Url.Action("SuaSanPham","Admin",new{maSp=item.MaSp})">Edit</a> |
+                                <a href="@Url.Action("XoaSanPham","Admin",new{maSp=item.MaSp})">Delete</a>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

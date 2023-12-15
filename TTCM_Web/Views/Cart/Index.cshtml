@@ -1,0 +1,381 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<TChiTietHdb>
+@{
+    BtTtcmWebContext db = new BtTtcmWebContext();
+    List<TDanhMucSp> sp = new List<TDanhMucSp>();
+    List<TChiTietSanPham> ct = new List<TChiTietSanPham>();
+    //List<THoaDonBan> hd = db.;
+    var n = Model.Count;
+    int tong = 0;
+
+    for (var i = 0; i < Model.Count; i++)
+    {
+        ct.Add(db.TChiTietSanPhams.FirstOrDefault(x => x.MaChiTietSp == Model[i].MaChiTietSp));
+        sp.Add(db.TDanhMucSps.FirstOrDefault(x => x.MaSp == ct[i].MaSp));
+
+    }
+
+
+}
+
+<!-- .page-title -->
+<div class="cart-container container page-wrapper page-checkout">
+    <div class="woocommerce">
+        <div class="woocommerce-notices-wrapper"></div>
+        <div class="woocommerce row row-large row-divided">
+            <div class="col large-7 pb-0">
+                <div class="woocommerce-cart-form">
+                    <div class="cart-wrapper sm-touch-scroll">
+                        <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th class="product-name" colspan="3">Sản phẩm</th>
+                                    <th class="product-price">Giá</th>
+                                    <th class="product-quantity">Số lượng</th>
+                                    <th class="product-subtotal">Tổng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (var i = 0; i < n; i++)
+                                {
+                                    tong += ((int)sp[i].GiaNhoNhat * (int)Model[i].SoLuongBan);
+                                    <tr class="woocommerce-cart-form__cart-item cart_item">
+                                        <td class="product-remove" onclick="xoa(this)" data-mact="@Model[i].MaChiTietSp">
+                                            <a href="" class="remove" onclick="xoa(this)" data-mact="@Model[i].MaChiTietSp">&times;</a>
+                                        </td>
+                                        <td class="product-thumbnail">
+                                            <a href="" class="mahd" data-tuan="@Model[i].MaHoaDon">
+                                                <img width="247" height="247" src="../access/images/@sp[i].AnhDaiDien" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail wp-post-image"
+                                                     alt="tiểu cảnh terrarium" />
+                                            </a>
+                                        </td>
+
+                                        <td class="product-name" data-title="Sản phẩm">
+                                            <a href="" class="mact" data-tuan="@Model[i].MaChiTietSp"> @sp[i].TenSp</a>
+                                            <div class="show-for-small mobile-product-price">
+                                                <span class="mobile-product-price__qty">1 x </span>
+                                                <span class="woocommerce-Price-amount amount">
+                                                    <bdi> &nbsp;<span class="woocommerce-Price-currencySymbol">&#8363;</span></bdi>
+                                                </span>
+                                            </div>
+                                        </td>
+
+                                        <td class="product-price" data-title="Giá">
+                                            <span class="woocommerce-Price-amount amount">
+                                                <bdi>@sp[i].GiaNhoNhat &nbsp;<span class="woocommerce-Price-currencySymbol">&#8363;</span></bdi>
+                                            </span>
+                                        </td>
+
+                                        <td class="product-quantity" data-title="Số lượng">
+                                            <div class="quantity buttons_added">
+                                                <input type="button" value="-" class="minus button is-form">
+                                                <label class="screen-reader-text">Số lượng</label>
+                                                <input type="number" id="quantity_643d7345b8356" class="input-text qty text" step="1" min="@Model[i].SoLuongBan" value="@Model[i].SoLuongBan" max="@ct[i].Slton" value="1" title="SL" size="4" pattern="[0-9]*" data-open="@ct[i].Slton" />
+                                                <input type="button" value="+" class="plus button is-form">
+                                            </div>
+                                        </td>
+
+                                        <td class="product-subtotal" data-title="Tổng">
+                                            <span class="woocommerce-Price-amount amount">
+                                                <bdi>@(sp[i].GiaNhoNhat * (int)Model[i].SoLuongBan)  <span class="woocommerce-Price-currencySymbol">&#8363;</span></bdi>
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                }
+
+
+                                <tr>
+                                    <td colspan="6" class="actions clear">
+
+                                        <div class="continue-shopping pull-left text-left">
+                                            <a class="button-continue-shopping button primary is-outline" href="@Url.Action("Index","SanPham")">
+                                                &#8592; Tiếp tục xem sản phẩm
+                                            </a>
+                                        </div>
+
+                                        <button type="submit" class="button primary mt-0 pull-left small" name="update_cart" value="Cập nhật giỏ hàng">Cập nhật giỏ hàng</button>
+
+                                        <input type="hidden" id="woocommerce-cart-nonce" name="woocommerce-cart-nonce" value="3f48424f7a" /><input type="hidden" name="_wp_http_referer" value="/cart" />
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-collaterals large-5 col pb-0">
+
+                <div class="cart-sidebar col-inner">
+                    <div class="cart_totals">
+
+                        <table cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th class="product-name" colspan="2" style="border-width:3px;">Cộng giỏ hàng</th>
+                                </tr>
+                            </thead>
+                        </table>
+
+                        <h2>Cộng giỏ hàng</h2>
+
+                        <table cellspacing="0" class="shop_table shop_table_responsive">
+
+                            <tr class="cart-subtotal">
+                                <th>Tạm tính</th>
+                                <td data-title="Tạm tính">
+                                    <span class="woocommerce-Price-amount amount">
+                                        <bdi>@tong.000<span class="woocommerce-Price-currencySymbol">&#8363;</span></bdi>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr class="order-total">
+                                <th>Tổng</th>
+                                <td data-title="Tổng"><strong><span class="woocommerce-Price-amount amount"><bdi>@tong.000 &nbsp;<span class="woocommerce-Price-currencySymbol">&#8363;</span></bdi></span></strong> </td>
+                            </tr>
+                        </table>
+                        <div class="wc-proceed-to-checkout">
+
+                            <a href="#" id="thanhtoan" class="btn btn-success button alt wc-forward" ">
+                                Tiến hành thanh toán
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="cart-footer-content after-cart-content relative">
+            <div class="devvn-popup-content-right" id="formThanhToan">
+                <form class="devvn_cusstom_info" id="devvn_cusstom_info" method="post">
+                    <div class="popup-customer-info">
+                        <div class="popup-customer-info-title">Thông tin người mua</div>
+                        <div class="popup-customer-info-group popup-customer-info-radio">
+                            <label>
+                                <input type="radio" name="customer-gender" value="1" checked />
+                                <span>Anh</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="customer-gender" value="2" />
+                                <span>Chị</span>
+                            </label>
+                        </div>
+                        <div class="popup-customer-info-group">
+                            <div class="popup-customer-info-item-2">
+                                <input type="text" class="customer-name" name="customer-name" placeholder="Họ và tên">
+                            </div>
+                            <div class="popup-customer-info-item-2">
+                                <input type="text" class="customer-phone" name="customer-phone" placeholder="Số điện thoại">
+                            </div>
+                        </div>
+                        <div class="popup-customer-info-group">
+                            <div class="popup-customer-info-item-1">
+                                <input type="text" class="customer-email" name="customer-email" data-required="false" placeholder="Địa chỉ email (Không bắt buộc)">
+                            </div>
+                        </div>
+                        <div class="popup-customer-info-group">
+                            <div class="popup-customer-info-item-1">
+                                <textarea class="customer-address" name="customer-address" placeholder="Địa chỉ nhận hàng (Không bắt buộc)"></textarea>
+                            </div>
+                        </div>
+                        <div class="popup-customer-info-group">
+                            <div class="popup-customer-info-item-1">
+                                <textarea class="order-note" name="order-note" placeholder="Ghi chú đơn hàng (Không bắt buộc)"></textarea>
+                            </div>
+                        </div>
+                        <div class="popup-customer-info-group">
+                            <div class="popup-customer-info-item-1 popup_quickbuy_shipping">
+                                <div class="popup_quickbuy_shipping_title">Tổng:</div>
+                                <div class="popup_quickbuy_total_calc"></div>
+                            </div>
+                        </div>
+                        <div class="popup-customer-info-group">
+                            <div class="popup-customer-info-item-1 hienthi">
+                                <button type="button" class="devvn-order-btn" id="xn" onclick="dhn()">Đặt hàng ngay</button>
+                            </div>
+                        </div>
+                        <div class="popup-customer-info-group">
+                            <div class="popup-customer-info-item-1">
+                                <div class="devvn_quickbuy_mess"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="prod_id" id="prod_id" value="2724">
+                    <input type="hidden" name="prod_nonce" id="prod_nonce" value="">
+                    <input type="hidden" name="enable_ship" id="enable_ship" value="">
+                    <input name="require_address" id="require_address" type="hidden" value="0" />
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<style>
+    .menu {
+        visibility: hidden;
+    }
+
+    .hien {
+        visibility: visible;
+    }
+</style>
+<script>
+    function capnhat(ma) {
+        var m = ma.dataset.mahd;
+
+    }
+    $.ajax({
+        url: 'https://localhost:7240/api/GioHangAPI/capnhat'
+            + '?hdb=' + m,
+        type: "PUT",
+        success: function (response) {
+            if (response === true) {
+                alert("Xóa sản phẩm thành công !", "", "success");
+
+            }
+            else {
+                alert("Sản phẩm đã được khóa khỏi giỏ hàng !", "", "error");
+            }
+        },
+        error: function (xhr) {
+            swal("Xóa sản phẩm không thành công !", "", "error");
+        }
+    });
+</script>
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+<script>
+    //$('#mega_menu').hide("fast");
+    $('#mega-menu-wrap').click(function () {
+        $('#mega_menu').toggleClass('hien');
+
+    });
+
+    $('#formThanhToan').css({ 'visibility': 'hidden' });
+    console.log($('.log-in').data('dn'));
+    $('#thanhtoan').click(function () {
+        if ($('.log-in').data('dn') === "dangnhap") {
+            alert("vui long dang nhap");
+        }
+        else {
+            $('#formThanhToan').css({ 'visibility': 'visible' });
+        }
+    });
+    function xoa(ma) {
+        var m = ma.dataset.mact;
+        alert(m);
+        $.ajax({
+            url: 'https://localhost:7240/api/GioHangAPI'
+                + '?machitietsp=' + m,
+            type: "DELETE",
+            success: function (response) {
+                if (response === true) {
+                    alert("Xóa sản phẩm thành công !", "", "success");
+
+                }
+                else {
+                    alert("Sản phẩm đã được khóa khỏi giỏ hàng !", "", "error");
+                }
+            },
+            error: function (xhr) {
+                swal("Xóa sản phẩm không thành công !", "", "error");
+            }
+        });
+
+    }
+    // chuyen den gio hang admin
+    function dhn() {
+        url1= 'https://localhost:7240/api/GioHangAPI/capnhat'
+            + '?hdb=' + '@Model[0].MaHoaDon'
+            + '&tong=' + '@tong';
+            console.log(url1);
+        $.ajax({          
+            url: 'https://localhost:7240/api/GioHangAPI/capnhat'
+                + '?hdb=' + '@Model[0].MaHoaDon' 
+                + '&tong=' + '@tong',
+            type: "PUT",          
+            success: function (response) {
+                if (response === true) {
+                    alert("chuyen sản phẩm thành công !", "", "success");
+                    $('#xn').css({ 'visibility': 'hidden' })
+                    $('.hienthi').append('<p>Chờ xác nhận</p>');
+                }
+                else {
+                    alert("Sản phẩm  !", "", "error");
+                }
+            },
+            error: function (xhr) {
+                swal(" sản phẩm không thành công !", "", "error");
+            }
+        });
+    }
+    //$('#xn').click(function () {
+    //  alert(1)
+    //    $.ajax({
+    //        url: 'https://localhost:7240/api/GioHangAPI/capnhat'
+    //           + '?hdb=' + '@Model[0].MaHoaDon'+'&tong='+'@tong',
+    //        type: "PUT",
+    //        alert(url);
+    //        success: function (response) {
+    //            if (response === true) {
+    //                alert("Xóa sản phẩm thành công !", "", "success");
+    //               $('#xn').css({ 'visibility': 'hidden' })
+    //               $('.hienthi').append('<p>Chờ xác nhận</p>');
+    //            }
+    //            else {
+    //                alert("Sản phẩm đã được khóa khỏi giỏ hàng !", "", "error");
+    //            }
+    //        },
+    //        error: function (xhr) {
+    //            swal("Xóa sản phẩm không thành công !", "", "error");
+    //        }
+    //    });
+    //})
+
+</script>
+
+<script>
+
+    var quantityInput = document.getElementById("quantity").value;
+
+    // Lấy thẻ nút plus
+    var plusButton = document.querySelector(".plus");
+
+    // Thêm sự kiện click cho nút plus
+    plusButton.addEventListener("click", function () {
+        // Tăng giá trị số lượng lên 1
+        var sl = $('.plus').data('open');
+        alert(sl);
+        if (quantityInput > sl) {
+            alert("số lượng hàng trong kho không đủ")
+        }
+        else {
+            quantityInput = parseInt(quantityInput.value) + 1;
+        }
+
+    });
+    var plusButton = document.querySelector(".minus");
+
+    // Thêm sự kiện click cho nút -
+    plusButton.addEventListener("click", function () {
+        if (quantityInput === 0) {
+            quantityInput = 0;
+        }
+        else {
+            quantityInput = parseInt(quantityInput.value) - 1;
+        }
+
+    });
+
+
+</script>
+
+
+
+
+

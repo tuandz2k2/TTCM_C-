@@ -1,0 +1,406 @@
+﻿@model List<TTinTuc>
+<div class="page-wrapper page-right-sidebar">
+    <div class="row">
+        <div id="content" class="large-9 left col col-divided" role="main">
+            <div class="page-inner">
+                <div class="img has-hover x md-x lg-x y md-y lg-y" id="image_1113493118">
+                    <div class="img-inner dark" id="map" style="width:768px;height:509px;">
+                        <script>
+                            mapboxgl.accessToken = 'pk.eyJ1IjoiaG9hbmcyMDEyMDAzOTEiLCJhIjoiY2xmcW11a2dqMDAxNDNycDdjc3NqaWlzbCJ9.DxoCZpojo6h72peXnckWEQ';
+                            const map = new mapboxgl.Map({
+                                container: 'map', // container ID
+                                style: 'mapbox://styles/mapbox/streets-v12', // style URL
+                                center: [105.798780, 21.032341], // starting position [lng, lat]
+                                zoom: 12, // starting zoom
+                            });
+                            var marker = new mapboxgl.Marker({
+                                color: "red", //Màu của Marker là đỏ
+                                draggable: true,
+                                anchor: 'bottom', //Nhãn Hà Nội nằm dưới Marker
+                            }).setLngLat([105.798780, 21.032341]) //Thiết lập Marker tại hà Nội
+                                .addTo(map);//để chèn vào map được chỉ định
+                            //Thêm popup
+                            var popup = new mapboxgl.Popup({
+                                closeButton: true,  //=truenút close sẽ xuất hiện phía trên bên phải của cửa sổ Popup
+                                closeOnClick: false,//=true thì cửa sổ Popup sẽ được đóng lại khi
+                                anchor: 'right',
+                            }).setLngLat([105.798780, 21.032341])
+                                .addTo(map);
+
+                            //chèn control vào bản đồ
+                            map.addControl(new mapboxgl.NavigationControl({//NavigationControl chứa các nút phóng to thu nhỏ
+                                showCompass: true,//Hiển thị nút compass
+                                showZoom: true,//Hiển thị phóng to ,thu nhỏ
+
+                            }));
+
+                            //GeolocateControl xác định vị trí
+                            map.addControl(new mapboxgl.GeolocateControl({
+                                positionOptions: {
+                                    enableHighAccuracy: true
+                                },
+                                trackUserLocation: true
+                            }));
+
+                            //ScaleControl hiển thị khoảng cách trên bản đồ so với khoảng cách tương ứng trên mặt đất
+                            var scale = new mapboxgl.ScaleControl({
+                                maxWidth: 80,
+                                unit: 'imperial'
+                            });
+                            map.addControl(scale);
+                            scale.setUnit('metric');
+
+                            //Bật tắt chế độ toàn màn hình
+                            map.addControl(new mapboxgl.FullscreenControl());
+                            //Khi click nó sẽ hiển thị tọa độ tại đó
+                            map.on('click', function (e) {
+                                var popup = new mapboxgl.Popup({
+                                    closeButton: true,
+                                    closeOnClick: true,
+
+
+                                }).setLngLat([e.lngLat.lng, e.lngLat.lat])
+                                    .setHTML("<h6>vị trí nhấn là: " + e.lngLat + "</h6>")
+                                    .addTo(map);
+                                marker = new mapboxgl.Marker({
+                                    color: 'red',
+                                    draggable: true,
+                                    anchor: 'bottom',
+
+                                }).setLngLat([e.lngLat.lng, e.lngLat.lat])
+                                    .addTo(map);
+                            });
+
+                            function setLanguage() {
+                                var languageSelect = document.getElementById('language');
+                                languageSelect.addEventListener('change', function () {
+                                    var language = languageSelect.value;
+
+                                    map.setLanguage(language);
+                                });
+                            }
+                            //Tạo chỉ đường
+                            map.addControl(
+                                new MapboxDirections({
+                                    accessToken: mapboxgl.accessToken
+                                }),
+                                'top-left'
+                            );
+
+
+                        </script>
+                    </div>
+                    <style scope="scope">
+                        #image_1113493118 {
+                            width: 100%;
+                        }
+                    </style>
+                </div>
+                <div class="gap-element clearfix" style="display:block; height:auto; padding-top:20px"></div>
+                <p>
+                    Đầu tiên, <a href="https://cayxinh.vn/">Cây Xinh</a>
+                    xin gửi lời cảm ơn tới các bạn vì đã ủng hộ và yêu thích các sản phẩm của chúng tớ suốt thời gian vừa qua. Với niềm đam mê và yêu quý cây cảnh mini, sen đá, xương rồng… và kinh nghiệm nhiều năm trồng, chăm sóc và bán cây chúng tớ đã rất hạnh phúc khi chia sẻ tình yêu đó với nhiều người.
+                </p>
+                <p>
+                    Cây Xinh rất vinh dự khi cung cấp cây cảnh, sen đá, xương rồng… trang trí cho nhiều nhà hàng, khách sạn, quán cafe, quán trà sữa, công t<span class="text_exposed_show">y nội thất… và một số đối tác khác.</span>
+                </p>
+                <h2>
+                    <span style="color: #00a859;">THÔNG TIN LIÊN HỆ:</span>
+                </h2>
+                <p>
+                    Mọi thông tin chi tiết về sản phẩm các bạn có thể tham khảo trên website và gọi trực tiếp cho chúng tôi qua SĐT: 
+                    <strong>
+                        <a class="goidt" href="tel:0868357939">086 835 7939</a>
+                    </strong>
+                    <i></i>
+                    để nhận tư vấn tốt nhất.
+                </p>
+                <p>
+                    Nếu bạn cần hỗ trợ tư vấn về mở <a href="https://cayxinh.vn/">shop CÂY CẢNH</a>
+                    chúng tôi có chính sách đặc biệt ưu tiên các bạn sinh viên có ý tưởng mở bán xin liên hệ với chúng tôi qua:
+                </p>
+                <h3>
+                    <strong>
+                        ĐIỆN THOẠI: <a class="goidt" href="tel:0868357939">086 835 7939</a>
+                    </strong>
+                </h3>
+                <p>
+                    <strong>
+                        - Zalo:<a class="goidt" href="tel:0868357939">086 835 7939</a>
+                    </strong>
+                </p>
+                <p>
+                    <strong>
+                        – Fanpage: <a href="https://www.facebook.com/caycanhmini.plus/">https://www.facebook.com/caycanhmini.plus/</a>
+                    </strong>
+                </p>
+                <p>
+                    <strong>– Email: cayxinh.vn@gmail.com</strong>
+                </p>
+                <h2>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfDdwM7vPNkECGx--Sgiy0RjBKrRswX-c54_OjK524k6hVrdg/viewform">
+                        <strong>Link đăng ký tài khoản bán buôn</strong>
+                    </a>
+                </h2>
+                <div class="text_exposed_show">
+                    <p>Trong hàng trăm cửa hàng cây cảnh trên thị trường Cây Xinh luôn có sự khác biệt về chất lượng sản phẩm, sự độc đáo về cây, nguồn phụ kiện tiểu cảnh và mẫu chậu luôn cập nhật liên tục… thái độ phục vụ khách hàng tốt và luôn tư vấn đúng những gì khách hàng cần là điều quan trọng giúp cho mọi người tin tưởng và sử dụng những sản phẩm của Cây Xinh.</p>
+                    <p>Hiện nay có rất nhiều bạn quan tâm và muốn hợp tác với Cây Xinh trong lĩnh vực cây cảnh như cộng tác viên, mua sỉ, tư vấn mở cửa hàng,… vì thế Cây Xinh xin trân trọng kính mời:</p>
+                    <p>
+                        – Các tổ chức kinh doanh thương mại, dịch vụ có nhu cầu về cây cảnh<br />
+                        – Các quán cafe, trà sữa, công ty nội thất, nhà hàng, khách sạn…<br />– Các cá nhân có nhu cầu kinh doanh, yêu thích và đam mê với cây cảnh, sen đá xương rồng…
+                    </p>
+                    <h3>
+                        <strong>NHỮNG ƯU ĐIỂM CỦA CÂY XINH:</strong>
+                    </h3>
+                    <p>
+                        <span class="_5mfr _47e3">
+                            <span class="_7oe">✅</span>
+                        </span>
+                        Có nguồn cung cấp cây cảnh, sen đá, xương rồng ổn định với chất lượng cao<br />
+                        <span class="_5mfr _47e3">
+                            <span class="_7oe">✅Tự sản xuất được châu cây cảnh với mẫu mã thay đổi liên tục hàng tháng</span>
+                        </span>
+                        <br />
+                        <span class="_5mfr _47e3">
+                            <span class="_7oe">✅Luôn có sẵn hàng trăm mẫu phụ kiện trang trí tiểu cảnh</span>
+                        </span>
+                        <br />
+                        <span class="_5mfr _47e3">
+                            <span class="_7oe">✅</span>
+                        </span>
+                        Nhiều loại cây đẹp, độc đáo được lựa chọn kỹ lưỡng<br />
+                        <span class="_5mfr _47e3">
+                            <span class="_7oe">✅</span>
+                        </span>
+                        Cung cấp nhiều mẫu chậu đẹp, cập nhật liên tục và độc quyền trên thị trường<br />
+                        <span class="_5mfr _47e3">
+                            <span class="_7oe">✅</span>
+                        </span>
+                        Có nhiều năm kinh nghiệm trồng và chăm sóc cây cảnh<br />
+                        <span class="_5mfr _47e3">
+                            <span class="_7oe">✅</span>
+                        </span>
+                        Có khả năng tư vấn thiết kế tiểu cảnh, sân vườn…
+                    </p>
+                    <h3>
+                        <strong>TẠI SAO BẠN NÊN CHỌN CÂY XINH LÀM ĐỐI TÁC:</strong>
+                    </h3>
+                    <p>
+                        <span class="_5mfr _47e3">
+                            <span class="_7oe">✅</span>
+                        </span>
+                        Cây Xinh nhận chuyển giao kỹ thuật trồng, chăm sóc và thiết kế tiểu cảnh terrarium…<br />
+                        <span class="_5mfr _47e3">
+                            <span class="_7oe">✅</span>
+                        </span>
+                        Tư vấn những loại cây phù hợp bán theo mùa, dễ chăm sóc<br />
+                        <span class="_5mfr _47e3">
+                            <span class="_7oe">✅</span>
+                        </span>
+                        Không mất quá nhiều chi phí để khởi đầu kinh doanh<br />
+                        <span class="_5mfr _47e3">
+                            <span class="_7oe">✅</span>
+                        </span>
+                        Hỗ trợ vận chuyển cây đi các tỉnh với chi phí tốt nhất<br />
+                        <span class="_5mfr _47e3">
+                            <span class="_7oe">✅</span>
+                        </span>
+                        Hỗ trợ marketing, truyền thông nếu các bạn có nhu cầu
+                    </p>
+                    <p>Với triết lý kinh doanh “LUÔN LUÔN CỐ GẮNG TẠO RA NHỮNG SẢN PHẨM TUYỆT VỜI NHẤT” Cây Xinh hướng mọi người tới những điều tốt đẹp khi có tình yêu với cây cảnh, sen đá, xương rồng…</p>
+                </div>
+                <ul>
+                    <li>
+                        Để tiện cho khách hàng theo dõi các sản phẩm, các bạn có thể truy cập website: <a href="https://cayxinh.vn/">www.cayxinh.vn</a>
+                        để xem các mẫu tiểu cảnh Terrarium, các loại cây cảnh, các mẫu chậu… sau đó liên hệ trực tiếp với chúng tôi qua SĐT 
+                        <strong>
+                            <a class="goidt" href="tel:0868357939">086 835 7939</a>
+                        </strong>
+                        <i></i>
+                        (có hỗ trợ Zalo) để nhận tư vấn mua sỉ.
+                    </li>
+                    <li>Tất cả sản phẩm do chúng tôi trực tiếp sản xuất nên chất lượng cực kì đảm bảo, không phải qua trung gian nên giá phải chăng và chiết khấu cao cho các của hàng bán lẻ.</li>
+                </ul>
+                <h2>
+                    <strong>CÁCH THỨC ĐẶT HÀNG</strong>
+                </h2>
+                <p>
+                    – <strong>Đặt hàng trực tiếp tại vườn:</strong>
+                    quý khách vui lòng gọi số ĐT: 
+                    <strong>
+                        <a class="goidt" href="tel:0868357939">086 835 7939</a>
+                    </strong>
+                    Nhân viên của chúng tôi sẽ tư vấn các sản phẩm hiện đang bán chạy, quý khách lựa chọn các mặt hàng cần mua buôn sau đó chúng tôi sẽ đóng hàng vào thùng cho quý khách. Với đơn hàng lớn hơn 10 triệu sẽ được miễn phí vận chuyển ra bến xe khách để gửi đi các tỉnh. Các trường hợp khác chúng tôi có thể hỗ trợ gọi xe giúp quý khách, chi phí vận chuyển sẽ do quý khách chi trả. Giá trị <strong>đơn hàng tối thiểu từ 2 triệu</strong>
+                    đối với đơn hàng buôn.
+                </p>
+                <p>
+                    – <strong>Đặt hàng online qua website và qua điện thoại:</strong>
+                    quý khách vui lòng xem các sản phẩm tại website: <a href="https://cayxinh.vn/">www.cayxinh.vn</a>
+                    sau đó lưu tên các sản phẩm ra file word và gửi cho chúng tôi qua email <strong>cayxinh.vn@gmail.com</strong>
+                    , chúng tôi sẽ gửi báo giá các sản phẩm đó cho quý khách ngay khi nhận được email.
+                </p>
+                <p>
+                    – <strong>Hình thức thanh toán</strong>
+                    : Quý khách có thể thanh toán trực tiếp tại cửa hàng hoặc thanh toán chuyển khoản ngân hàng.
+                </p>
+                <ul>
+                    <li>
+                        Thông tin tài khoản <a href="https://cayxinh.vn/huong-dan-mua-hang-tai-cay-xinh">thanh toán qua ngân hàng</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- .page-inner -->
+        </div>
+        <!-- .#content large-9 left -->
+        <div class="large-3 col">
+            <div id="secondary" class="widget-area " role="complementary">
+                <aside id="flatsome_recent_posts-2" class="widget flatsome_recent_posts">
+                    <span class="widget-title ">
+                        <span>Bài viết mới nhất</span>
+                    </span>
+                    <div class="is-divider small"></div>
+                    <ul>
+                        @for (var x = 0; x < 2; x++)
+                        {
+                            @foreach (var i in Model)
+                            {
+                                <li class="recent-blog-posts-li">
+                                    <div class="flex-row recent-blog-posts align-top pt-half pb-half">
+                                        <div class="flex-col mr-half">
+                                            <div class="badge post-date  badge-square">
+                                                <div class="badge-inner bg-fill" style="background: url('../access/images/@i.Anh'); border:0;"></div>
+                                            </div>
+                                        </div>
+                                        <!-- .flex-col -->
+                                        <div class="flex-col flex-grow">
+                                            <a href="../../cach-trong-cay-kim-ngan-de-ban-dung-cach/index.html" title="Cách trồng cây kim ngân để bàn đúng cách">@i.TieuDe</a>
+                                            <span class="post_comments op-7 block is-xsmall">
+                                                <a href="../../cach-trong-cay-kim-ngan-de-ban-dung-cach/index.html#comments">
+                                                    <strong>2</strong>
+                                                    Comments
+                                                </a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <!-- .flex-row -->
+                                </li>
+                            }
+                        }
+
+                    </ul>
+                </aside>
+                <aside id="woocommerce_products-3" class="widget woocommerce widget_products">
+                    <span class="widget-title ">
+                        <span>Sản phẩm mới</span>
+                    </span>
+                    <div class="is-divider small"></div>
+                    <ul class="product_list_widget">
+                        <li>
+                            <a href="../san-pham/cay-hanh-phuc/index.html">
+                                <img width="100" height="100" src="../wp-content/uploads/2017/11/cay-phu-quy-100x100.jpg" class="attachment-woocommerce_gallery_thumbnail size-woocommerce_gallery_thumbnail" alt="" srcset="https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-phu-quy-100x100.jpg 100w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-phu-quy-150x150.jpg 150w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-phu-quy-300x300.jpg 300w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-phu-quy.jpg 400w" sizes="(max-width: 100px) 100vw, 100px" />
+                                <span class="product-title">Cây Hạnh Phúc</span>
+                            </a>
+                            <div class="star-rating">
+                                <span style="width:100%">
+                                    Được xếp hạng <strong class="rating">5.00</strong>
+                                    5 sao
+                                </span>
+                            </div>
+                            <del>
+                                <span class="woocommerce-Price-amount amount">
+                                    500.000<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                </span>
+                            </del>
+                            <ins>
+                                <span class="woocommerce-Price-amount amount">
+                                    450.000<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                </span>
+                            </ins>
+                        </li>
+                        <li>
+                            <a href="../san-pham/cay-duoi-cong-tim/index.html">
+                                <img width="100" height="100" src="../wp-content/uploads/2017/11/cay-duoi-cong-tim-100x100.jpg" class="attachment-woocommerce_gallery_thumbnail size-woocommerce_gallery_thumbnail" alt="" srcset="https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-duoi-cong-tim-100x100.jpg 100w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-duoi-cong-tim-150x150.jpg 150w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-duoi-cong-tim-300x300.jpg 300w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-duoi-cong-tim.jpg 400w" sizes="(max-width: 100px) 100vw, 100px" />
+                                <span class="product-title">Cây Đuôi Công Tím</span>
+                            </a>
+                            <div class="star-rating">
+                                <span style="width:80%">
+                                    Được xếp hạng <strong class="rating">4.00</strong>
+                                    5 sao
+                                </span>
+                            </div>
+                            <span class="woocommerce-Price-amount amount">
+                                300.000<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                            </span>
+                        </li>
+                        <li>
+                            <a href="../san-pham/tieu-canh-terrarium-composite-04/index.html">
+                                <img width="100" height="100" src="../wp-content/uploads/2017/11/cay-bang-singapore-04-510x510-100x100.jpg" class="attachment-woocommerce_gallery_thumbnail size-woocommerce_gallery_thumbnail" alt="" srcset="https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-bang-singapore-04-510x510-100x100.jpg 100w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-bang-singapore-04-510x510-150x150.jpg 150w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-bang-singapore-04-510x510-300x300.jpg 300w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-bang-singapore-04-510x510.jpg 510w" sizes="(max-width: 100px) 100vw, 100px" />
+                                <span class="product-title">Tiểu cảnh Composite 04</span>
+                            </a>
+                            <div class="star-rating">
+                                <span style="width:100%">
+                                    Được xếp hạng <strong class="rating">5.00</strong>
+                                    5 sao
+                                </span>
+                            </div>
+                            <span class="woocommerce-Price-amount amount">
+                                500.000<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                            </span>
+                        </li>
+                        <li>
+                            <a href="../san-pham/tieu-canh-terrarium-composite-03/index.html">
+                                <img width="100" height="100" src="../wp-content/uploads/2017/11/cay-ngu-gia-bi-bonsai-510x510-100x100.jpg" class="attachment-woocommerce_gallery_thumbnail size-woocommerce_gallery_thumbnail" alt="" srcset="https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-ngu-gia-bi-bonsai-510x510-100x100.jpg 100w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-ngu-gia-bi-bonsai-510x510-150x150.jpg 150w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-ngu-gia-bi-bonsai-510x510-300x300.jpg 300w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-ngu-gia-bi-bonsai-510x510.jpg 510w" sizes="(max-width: 100px) 100vw, 100px" />
+                                <span class="product-title">Tiểu cảnh Composite 03</span>
+                            </a>
+                            <div class="star-rating">
+                                <span style="width:100%">
+                                    Được xếp hạng <strong class="rating">5.00</strong>
+                                    5 sao
+                                </span>
+                            </div>
+                            <span class="woocommerce-Price-amount amount">
+                                500.000<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                            </span>
+                        </li>
+                        <li>
+                            <a href="../san-pham/tieu-canh-terrarium-composite-02/index.html">
+                                <img width="100" height="100" src="../wp-content/uploads/2017/11/cay-trau-ba-de-vuong-do-co-lon-510x510-100x100.jpg" class="attachment-woocommerce_gallery_thumbnail size-woocommerce_gallery_thumbnail" alt="" srcset="https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-trau-ba-de-vuong-do-co-lon-510x510-100x100.jpg 100w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-trau-ba-de-vuong-do-co-lon-510x510-150x150.jpg 150w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-trau-ba-de-vuong-do-co-lon-510x510-300x300.jpg 300w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-trau-ba-de-vuong-do-co-lon-510x510.jpg 510w" sizes="(max-width: 100px) 100vw, 100px" />
+                                <span class="product-title">Tiểu cảnh Composite 02</span>
+                            </a>
+                            <div class="star-rating">
+                                <span style="width:100%">
+                                    Được xếp hạng <strong class="rating">5.00</strong>
+                                    5 sao
+                                </span>
+                            </div>
+                            <span class="woocommerce-Price-amount amount">
+                                500.000<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                            </span>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+            <!-- #secondary -->
+        </div>
+        <!-- .sidebar -->
+    </div>
+    <!-- .row -->
+</div>
+<!-- .page-right-sidebar container -->
+<style>
+    .menu {
+        visibility: hidden;
+    }
+
+    .hien {
+        visibility: visible;
+    }
+</style>
+<script>
+    //$('#mega_menu').hide("fast");
+    $('#mega-menu-wrap').click(function () {
+        $('#mega_menu').toggleClass('hien');
+
+    });
+
+</script>

@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "Sigup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="woocommerce-billing-fields__field-wrapper container" style="margin-top:20px;">
+    @using(Html.BeginForm("Login","Access",FormMethod.Post)){	
+    <p class="form-row form-row-wide validate-required" id="billing_last_name_field" data-priority="">
+        <label for="billing_last_name" class="">
+            Họ và tên&nbsp;<abbr class="required" title="bắt buộc">*</abbr>
+        </label><span class="woocommerce-input-wrapper">
+            <input type="text" class="input-text" name="billing_last_name" id="billing_last_name" placeholder="Nhập đầy đủ họ và tên của bạn" value="">
+        </span>
+    </p><p class="form-row form-row-wide address-field validate-required" id="billing_address_1_field" data-priority="50">
+        <label for="billing_address_1" class="">Địa chỉ&nbsp;<abbr class="required" title="bắt buộc">*</abbr></label><span class="woocommerce-input-wrapper">
+            <input type="text" class="input-text" name="billing_address_1" id="billing_address_1" placeholder="Ví dụ: Số xx Ngõ xx Phú Kiều, Bắc Từ Liêm, Hà Nội" value="" autocomplete="address-line1">
+        </span>
+    </p><p class="form-row form-row-wide validate-required validate-phone" id="billing_phone_field" data-priority="100">
+        <label for="billing_phone" class="">Số điện thoại&nbsp;<abbr class="required" title="bắt buộc">*</abbr></label><span class="woocommerce-input-wrapper">
+            <input type="tel" class="input-text" name="billing_phone" id="billing_phone" placeholder="" value="" autocomplete="tel">
+        </span>
+    </p><p class="form-row form-row-wide validate-required validate-email" id="billing_email_field" data-priority="110">
+        <label for="billing_email" class="">Địa chỉ email&nbsp;<abbr class="required" title="bắt buộc">*</abbr></label><span class="woocommerce-input-wrapper">
+            <input type="email" class="input-text" name="billing_email" id="billing_email" placeholder="" value="" autocomplete="email username">
+        </span>
+    </p>
+    <p class="form-row">
+        <input type="hidden" id="woocommerce-login-nonce" name="woocommerce-login-nonce" value="8bc111cc22"><input type="hidden" name="_wp_http_referer" value="/tai-khoan/">
+        <button type="submit" class="woocommerce-Button button" name="login" value="Đăng nhập">Đăng nhập</button>
+        <label class="woocommerce-form__label woocommerce-form__label-for-checkbox inline">
+            <button type="submit" class="woocommerce-Button button">Đăng kí</button>
+        </label>
+    </p>
+    }
+</div>
+<style>
+    .menu {
+        visibility: hidden;
+    }
+
+    .hien {
+        visibility: visible;
+    }
+</style>
+<script>
+    //$('#mega_menu').hide("fast");
+    $('#mega-menu-wrap').click(function () {
+        $('#mega_menu').toggleClass('hien');
+
+    });
+
+</script>

@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model TUser
+<div class=" lightbox-inner container " style="margin-top:20px;">
+	<div class="account-login-inner">
+		<h3 class="uppercase">Đăng nhập</h3>
+		@using(Html.BeginForm("Login","Access",FormMethod.Post)){	
+			<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+				<label for="username">Tên tài khoản hoặc địa chỉ email&nbsp;<span class="required">*</span></label>
+				@Html.TextBoxFor(x => x.Username, new {@class="woocommerce-Input woocommerce-Input--text input-text",placeholder ="Tài khoản", required="autofocus"})
+			</p>
+			<p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+				<label for="password">Mật khẩu&nbsp;<span class="required">*</span></label>
+				
+				@Html.TextBoxFor(x=>x.Password, new{@class="woocommerce-Input woocommerce-Input--text input-text",type="password", placeholder="Mật khẩu"})
+			</p>
+			<p class="form-row">
+				<input type="hidden" id="woocommerce-login-nonce" name="woocommerce-login-nonce" value="8bc111cc22"><input type="hidden" name="_wp_http_referer" value="/tai-khoan/">
+				<button type="submit" class="woocommerce-Button button" name="login" value="Đăng nhập">Đăng nhập</button>
+				<label class="woocommerce-form__label woocommerce-form__label-for-checkbox inline">
+					<button class="woocommerce-Button button"><a href="/Access/Sigup" style="color:white">Đăng kí</a></button>
+				</label>
+			</p>
+			<p class="woocommerce-LostPassword lost_password">
+				<a href="lost-password/index.html">Quên mật khẩu?</a>
+			</p>
+		}
+	</div>
+</div>
+<style>
+	.menu {
+		visibility: hidden;
+	}
+
+	.hien {
+		visibility: visible;
+	}
+</style>
+<script>
+	//$('#mega_menu').hide("fast");
+	$('#mega-menu-wrap').click(function () {
+		$('#mega_menu').toggleClass('hien');
+
+	});
+
+</script>

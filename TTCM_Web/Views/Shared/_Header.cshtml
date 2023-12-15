@@ -1,0 +1,257 @@
+﻿@{
+    Layout = null;
+    BtTtcmWebContext db = new BtTtcmWebContext();
+    var loai = db.TLoaiSps.ToList();
+    var sp = db.TDanhMucSps.ToList();
+}
+
+<div id="wrapper">
+    <header id="header" class="header has-sticky sticky-jump">
+        <div id="masthead" class="header-main hide-for-sticky">
+            <div class="header-inner flex-row container logo-left medium-logo-center" role="navigation">
+
+                <!-- Logo -->
+                <div id="logo" class="flex-col logo">
+                    <!-- Header logo -->
+                    <a href="index.html" title="Mẫu website bán cây" rel="home">
+                        <img width="252" height="91" src="../access/wp-content/uploads/2022/03/logo-1.png" class="header_logo header-logo" alt="Mẫu website bán cây văn phòng &#8211; Thiết kế web NTW" />
+                    </a>
+                </div>
+                <!-- Mobile Left Elements -->
+                <div class="flex-col show-for-medium flex-left">
+                    <ul class="mobile-nav nav nav-left ">
+                        <li class="nav-icon has-icon">
+                            <a href="#" data-open="#main-menu" data-pos="left" data-bg="main-menu-overlay" data-color="dark" class="is-small" aria-controls="main-menu" aria-expanded="false">
+                                <i class="icon-menu"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Left Elements -->
+                <div class="flex-col hide-for-medium flex-left flex-grow">
+                    <ul class="header-nav header-nav-main nav nav-left  nav-uppercase">
+                        <li class="header-search-form search-form html relative has-icon">
+                            <div class="header-search-form-wrapper">
+                                <div class="searchform-wrapper ux-search-box relative is-normal">
+                                    @using(Html.BeginForm("TKSanPham", "SanPham", new { @class = "searchform" }))                                     
+                                        {
+                                            <div class="flex-row relative">
+                                                <div class="flex-col search-form-categories">
+                                                    <select class="search_categories resize-select mb-0" name="product_cat">
+                                                        <option value="" selected='selected'>All</option>
+                                                    </select>
+                                                </div>
+                                                <!-- .flex-col -->
+                                                <div class="flex-col flex-grow">
+                                                    <input type="search" class="search-field mb-0" name="sTuKhoa" value="" placeholder="Tìm kiếm danh mục, sản phẩm..." />
+                                                    <input type="hidden" name="post_type" value="product" />
+                                                </div>
+                                                <!-- .flex-col -->
+                                                <div class="flex-col">
+                                                    <button type="submit" class="icon-search1 ux-search-submit submit-button secondary button icon mb-0">
+                                                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                                                    </button>
+                                                </div>
+                                                <!-- .flex-col -->
+                                            </div>
+                                            <!-- .flex-row -->
+                                            <div class="live-search-results text-left z-top"></div>
+                                        }
+                                    
+                                   
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Right Elements -->
+                <div class="flex-col hide-for-medium flex-right">
+                    <ul class="header-nav header-nav-main nav nav-right  nav-uppercase">
+                        <li class="account-item has-icon">
+                            @if (Context.Session.GetString("Username") == null)
+                            {
+                                <a href="@Url.Action("Login","Access")" class="nav-top-link nav-top-not-logged-in log-in" data-dn="dangnhap">
+                                    <span>
+                                        Đăng nhập
+                                    </span>
+
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("Logout","Access")" class="nav-top-link nav-top-not-logged-in log-in" data-dn="dangxuat">
+                                    <span>
+                                        Đăng xuất
+                                    </span>
+
+                                </a>
+                            }
+
+                            <!-- .account-login-link -->
+
+
+
+                        </li>
+                        <li class="cart-item has-icon has-dropdown">
+                            <a href="@Url.Action("Index","Cart")" title="Giỏ hàng" class="header-cart-link is-small">
+                                <span class="header-cart-title">
+                                    Giỏ hàng
+                                </span>
+
+                                <span class="image-icon header-cart-icon" data-icon-label="0">
+                                    <img class="cart-img-icon" alt="Giỏ hàng"
+                                         src="../access/wp-content/uploads/2019/03/icon-cart.jpg" />
+                                </span>
+                                <!-- .cart-img-inner -->
+                            </a>
+
+                            <ul class="nav-dropdown nav-dropdown-default">
+                                <li class="html widget_shopping_cart">
+                                    <div class="widget_shopping_cart_content">
+                                        <p class="woocommerce-mini-cart__empty-message">Chưa có sản phẩm trong giỏ hàng.</p>
+
+
+                                    </div>
+                                </li>
+                            </ul>
+                            <!-- .nav-dropdown -->
+
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Mobile Right Elements -->
+                <div class="flex-col show-for-medium flex-right">
+                    <ul class="mobile-nav nav nav-right ">
+                        <li class="cart-item has-icon">
+                            <a href="@Url.Action("Index","Cart")" class="header-cart-link off-canvas-toggle nav-top-link is-small" data-open="#cart-popup" data-class="off-canvas-cart" title="Giỏ hàng" data-pos="right">
+                                <span class="image-icon header-cart-icon" data-icon-label="0">
+                                    <img class="cart-img-icon" alt="Giỏ hàng"
+                                         src="../access/wp-content/uploads/2019/03/icon-cart.jpg" />
+                                </span>
+                                <!-- .cart-img-inner -->
+                            </a>
+
+
+                            <!-- Cart Sidebar Popup -->
+                            <div id="cart-popup" class="mfp-hide widget_shopping_cart">
+                                <div class="cart-popup-inner inner-padding">
+                                    <div class="cart-popup-title text-center">
+                                        <h4 class="uppercase">Giỏ hàng</h4>
+                                        <div class="is-divider"></div>
+                                    </div>
+                                    <div class="widget_shopping_cart_content">
+                                        <p class="woocommerce-mini-cart__empty-message">Chưa có sản phẩm trong giỏ hàng.</p>
+                                    </div>
+                                    <div class="cart-sidebar-content relative"></div>
+                                </div>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!-- .header-inner -->
+
+        </div>
+        <!-- .header-main -->
+        <div id="wide-nav" class="header-bottom wide-nav flex-has-center hide-for-medium">
+            <div class="flex-row container">
+
+                <div class="flex-col hide-for-medium flex-left">
+                    <ul class="nav header-nav header-bottom-nav nav-left ">
+                        <div id="mega-menu-wrap" class="ot-vm-click">
+                            <div id="mega-menu-title">
+                                <i class="icon-menu"></i> DANH MỤC SẢN PHẨM
+
+                            </div>
+                            <ul id="mega_menu" class="menu">
+                                <li id="menu-item-112" class="label-hot menu-item menu-item-type-custom menu-item-object-custom menu-item-112">
+                                    <a href="#">Sản phẩm bán chạy</a>
+                                </li>
+                                 @for (var i=0;i<loai.Count;i++)
+                                {
+
+                                    <li id="menu-item-27" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-has-children menu-item-27">
+                                        <a asp-controller="SanPham" asp-action="SanPhamTheoLoai" asp-route-maloai="@loai[i].MaLoai">@loai[i].Loai</a>
+                                        <ul class="sub-menu">
+                                            @for(var j = 0; j < sp.Count; j++)
+                                            {
+                                                <li  id="menu-item-28" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-28">
+
+                                                @if (sp[j].MaLoai == loai[i].MaLoai)
+                                                {
+                                                        <a asp-controller="SanPham" asp-action="ChiTietSanPham" asp-route-maSp="@sp[j].MaSp">
+                                                           @sp[j].TenSp
+                                                        </a>
+                                                        @if(j==5){
+                                                            break;
+                                                        }
+                                                    }
+                                                </li>   
+                                                
+                                            }
+                                            @if (i == 6)
+                                            {
+                                                break;
+                                            }
+                                      </ul>      
+                                         
+                                     </li>
+                                }        
+                            </ul>
+                        </div>
+                    </ul>
+                </div>
+                <!-- flex-col -->
+
+                <div class="flex-col hide-for-medium flex-center">
+                    <ul class="nav header-nav header-bottom-nav nav-center ">
+                        <li id="menu-item-101" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-72 current_page_item active  menu-item-101">
+                            <a href="/Home/Index" class="nav-top-link">Trang chủ</a>
+                        </li>
+                        <li id="menu-item-100" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-100"><a href="/GioiThieu/Index" class="nav-top-link">Giới thiệu</a></li>
+                        <li id="menu-item-98" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-98">
+                            <a asp-controller="SanPham" asp-action="Index"  class="nav-top-link">Sản phẩm</a>
+                        </li>
+                        <li id="menu-item-97" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-97">
+                            <a href="/TinTuc/Index" class="nav-top-link">Tin tức</a>
+                        </li>
+                        <li id="menu-item-96" class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-96">
+                            <a href="/LienHe/Index" class="nav-top-link">Liên hệ</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- flex-col -->
+
+                <div class="flex-col hide-for-medium flex-right flex-grow">
+                    <ul class="nav header-nav header-bottom-nav nav-right ">
+                        <li class="html header-button-1">
+                            <div class="header-button">
+                                <a class="button primary" asp-area="Admin" asp-controller="HomeAdmin" style="border-radius:99px;">
+                                    <span>0967.771.928</span>
+                                </a>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                </div>
+                <!-- flex-col -->
+
+
+            </div>
+            <!-- .flex-row -->
+        </div>
+        <!-- .header-bottom -->
+        <div class="header-bg-container fill">
+            <div class="header-bg-image fill"></div>
+            <div class="header-bg-color fill"></div>
+        </div>
+        <!-- .header-bg-container -->
+    </header>
+</div>

@@ -1,0 +1,430 @@
+﻿@using TTCM_Web.Extention;
+
+@{
+    ViewData["Title"] = "ChiTietSanPham";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model TDanhMucSp
+@{
+    BtTtcmWebContext db=new BtTtcmWebContext();
+
+    var ctsp = db.TChiTietSanPhams.FirstOrDefault(x => x.MaSp == Model.MaSp);
+
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <div class="shop-container">
+        <div class="container">
+            <div class="woocommerce-notices-wrapper"></div>
+        </div>
+        <!-- /.container -->
+        <div id="product-2724" class="post-2724 product type-product status-publish has-post-thumbnail first instock shipping-taxable purchasable product-type-simple">
+            <div class="product-container">
+                <div class="product-main">
+                    <div class="row mb-0 content-row">
+                        <div class="product-gallery large-4 col">
+                            <div class="product-images relative mb-half has-hover woocommerce-product-gallery woocommerce-product-gallery--with-images woocommerce-product-gallery--columns-4 images" data-columns="4">
+                                <div class="badge-container is-larger absolute left top z-1"></div>
+                                <div class="image-tools absolute top show-on-hover right z-3"></div>
+                                <figure class="woocommerce-product-gallery__wrapper product-gallery-slider slider slider-nav-small mb-half" data-flickity-options='{
+                "cellAlign": "center",
+                "wrapAround": true,
+                "autoPlay": false,
+                "prevNextButtons":true,
+                "adaptiveHeight": true,
+                "imagesLoaded": true,
+                "lazyLoad": 1,
+                "dragThreshold" : 15,
+                "pageDots": false,
+                "rightToLeft": false       }'>
+                                    <div  class="woocommerce-product-gallery__image slide first">
+                                        <a href="">
+
+                                        <img width="510" height="510" src="../access/images/@Model.AnhDaiDien" class="wp-post-image skip-lazy" alt="" title="cay-trau-ba-de-vuong-do-co-lon-510x510"  />
+                                        </a>
+                                    </div>
+                               
+                                    <div class="woocommerce-product-gallery__image slide">
+                                        <a href="../wp-content/uploads/2017/11/sp1.jpg">
+                                            <img width="400" height="400" src="../wp-content/uploads/2017/11/sp1.jpg" class="skip-lazy" alt="" title="sp1" />
+                                        </a>
+                                    </div>
+                                
+                                <div  class="woocommerce-product-gallery__image slide">
+                                        <a href="../wp-content/uploads/2017/11/sp1.jpg">
+                                            <img width="400" height="400" src="../wp-content/uploads/2017/11/sp1.jpg" class="skip-lazy" alt="" title="sp1"/>
+                                        </a>
+                                    </div>
+                                    <div  class="woocommerce-product-gallery__image slide">
+                                        <a href="../wp-content/uploads/2017/11/cay-ngu-gia-bi-bonsai-510x510.jpg">
+                                            <img width="510" height="510" src="../wp-content/uploads/2017/11/cay-ngu-gia-bi-bonsai-510x510.jpg" class="skip-lazy" alt="" title="cay-ngu-gia-bi-bonsai-510x510" data-caption="" data-src="https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-ngu-gia-bi-bonsai-510x510.jpg" data-large_image="https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-ngu-gia-bi-bonsai-510x510.jpg" data-large_image_width="510" data-large_image_height="510" srcset="https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-ngu-gia-bi-bonsai-510x510.jpg 510w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-ngu-gia-bi-bonsai-510x510-150x150.jpg 150w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-ngu-gia-bi-bonsai-510x510-300x300.jpg 300w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-ngu-gia-bi-bonsai-510x510-100x100.jpg 100w" sizes="(max-width: 510px) 100vw, 510px" />
+                                        </a>
+                                    </div>
+                                    <div > <a href="../wp-content/uploads/2017/11/cay-phu-quy.jpg">
+                                            <img width="400" height="400" src="../wp-content/uploads/2017/11/cay-phu-quy.jpg" class="skip-lazy" alt="" title="cay-phu-quy" data-caption="" data-src="https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-phu-quy.jpg" data-large_image="https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-phu-quy.jpg" data-large_image_width="400" data-large_image_height="400" srcset="https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-phu-quy.jpg 400w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-phu-quy-150x150.jpg 150w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-phu-quy-300x300.jpg 300w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-phu-quy-100x100.jpg 100w" sizes="(max-width: 400px) 100vw, 400px" />
+                                        </a>
+                                    </div>
+                                    <div >  <a href="../wp-content/uploads/2017/11/cay-kim-ngan-1-cu-chau-dia-trang-510x510.jpg">
+                                            <img width="510" height="510" src="../wp-content/uploads/2017/11/cay-kim-ngan-1-cu-chau-dia-trang-510x510.jpg" class="skip-lazy" alt="" title="cay-kim-ngan-1-cu-chau-dia-trang-510x510" data-caption="" data-src="https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-kim-ngan-1-cu-chau-dia-trang-510x510.jpg" data-large_image="https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-kim-ngan-1-cu-chau-dia-trang-510x510.jpg" data-large_image_width="510" data-large_image_height="510" srcset="https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-kim-ngan-1-cu-chau-dia-trang-510x510.jpg 510w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-kim-ngan-1-cu-chau-dia-trang-510x510-150x150.jpg 150w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-kim-ngan-1-cu-chau-dia-trang-510x510-300x300.jpg 300w, https://cayxanh3.webdep.live/wp-content/uploads/2017/11/cay-kim-ngan-1-cu-chau-dia-trang-510x510-100x100.jpg 100w" sizes="(max-width: 510px) 100vw, 510px" />
+                                        </a>
+                                    </div>
+                                </figure>
+                                <div class="image-tools absolute bottom left z-3">
+                                    <a href="#product-zoom" class="zoom-button button is-outline circle icon tooltip hide-for-small" title="Zoom">
+                                        <i class="icon-expand"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-thumbnails thumbnails slider-no-arrows slider row row-small row-slider slider-nav-small small-columns-4" data-flickity-options='{
+              "cellAlign": "left",
+              "wrapAround": false,
+              "autoPlay": false,
+              "prevNextButtons": true,
+              "asNavFor": ".product-gallery-slider",
+              "percentPosition": true,
+              "imagesLoaded": true,
+              "pageDots": false,
+              "rightToLeft": false,
+              "contain": true
+          }'>
+                            @for(var i = 0; i < 4; i++)
+                            {
+                                <div class="col is-nav-selected first">
+                                    <a href="">
+                                        <img src="../access/images/@Model.AnhDaiDien" alt="" width="300" height="300" class="attachment-woocommerce_thumbnail" />
+                                    </a>
+                                </div>
+                            }
+                            
+                                
+                            </div>
+                            <!-- .product-thumbnails -->
+                            <div class="form-dien-thoai">
+                                <label>
+                                    Hãy để lại<strong>SĐT, chuyên viên tư vấn</strong>
+                                    của chúng tôi sẽ gọi ngay cho bạn <strong>miễn phí!</strong>
+                                </label>
+                                <div role="form" class="wpcf7" id="wpcf7-f9690-p2724-o1" lang="vi" dir="ltr">
+                                    <div class="screen-reader-response"></div>
+                                    <form  method="post" class="wpcf7-form" novalidate="novalidate">
+                                        <div style="display: none;">
+                                            <input type="hidden" name="_wpcf7" value="9690" />
+                                            <input type="hidden" name="_wpcf7_version" value="5.1.1" />
+                                            <input type="hidden" name="_wpcf7_locale" value="vi" />
+                                            <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f9690-p2724-o1" />
+                                            <input type="hidden" name="_wpcf7_container_post" value="2724" />
+                                            <input type="hidden" name="g-recaptcha-response" value="" />
+                                        </div>
+                                        <div class="form-sdt">
+                                            <div class="left">
+                                                <span class="wpcf7-form-control-wrap tel-271">
+                                                    <input type="tel" name="tel-271" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel" aria-required="true" aria-invalid="false" placeholder="Nhập số điện thoại..." />
+                                                </span>
+                                            </div>
+                                            <div class="right">
+                                                <input type="submit" value="Gửi" class="wpcf7-form-control wpcf7-submit" />
+                                            </div>
+                                            <div class="clearboth"></div>
+                                            <div class="wpcf7-response-output wpcf7-display-none"></div
+                                                </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info summary col-fit col-divided col entry-summary product-summary">
+                        <nav class="woocommerce-breadcrumb breadcrumbs">
+                            <a href="../index.html">Trang chủ</a>
+                        </nav>
+                    <h1 class="product-title product_title entry-title" data-masp="@Model.MaSp" id="masp">@Model.TenSp</h1>
+                        <div class="is-divider small"></div>
+                        <div class="price-wrapper">
+                            <p class="price product-page-price ">
+                                <span class="woocommerce-Price-amount amount">
+                                    @Model.GiaLonNhat<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                </span>
+                            </p>
+                        </div>
+                        <form class="cart"  method="post" enctype='multipart/form-data'>
+                            <div class="quantity buttons_added">
+                                <input type="button" value="-" class="minus button is-form">
+                                <label class="screen-reader-text" for="quantity_6432e178a5767">Số lượng</label>
+                                <input type="number" id="quantity" class="input-text qty text" step="1" min="1" max="@ctsp.Slton" name="quantity" value="1" title="SL" size="4" pattern="[0-9]*" inputmode="numeric"  />
+                                <input type="button" value="+" class="plus button is-form">
+                            </div>
+                       
+                        <button class="single_add_to_cart_button button alt themvaogiohang" id="bntuan" >
+                           Thêm vào giỏ
+                        </button>
+                   @*     <button asp-controller="Cart" asp-action="Index" asp-route-tieuchi="@Model.MaSp" value="2724" class="single_add_to_cart_button button alt">Thêm vào giỏ</button>*@
+                        </form>
+                        <div class="row row-small contact-button" id="row-1538204728">
+                            <div class="col medium-6 small-12 large-6">
+                                <div class="col-inner">
+                                    <a rel="noopener noreferrer" href="https://messenger.com/t/chjt.soc" target="_blank" class="button primary lowercase expand chat-facebook" style="border-radius:5px;">
+                                        <span>Chat Facebook</span>
+                                    </a>
+                                    <a class="button primary lowercase expand mua-si" style="border-radius:5px;">
+                                        <span>Mua sỉ: 086.835.7939</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col medium-6 small-12 large-6">
+                                <div class="col-inner">
+                                    <a rel="noopener noreferrer" href="#" target="_blank" class="button primary lowercase expand chat-zalo" style="border-radius:5px;">
+                                        <span>Chat Zalo</span>
+                                    </a>
+                                    <a href="tel:0948225678" target="_self" class="button primary lowercase expand mua-le" style="border-radius:5px;">
+                                        <span>Mua lẻ: 097.822.5678</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <style scope="scope"></style>
+                        </div>
+                    <a asp-controller="Cart" asp-action="Index" class="devvn_buy_now devvn_buy_now_style" data-id="2724">
+                            <strong>Mua hàng nhanh</strong>
+                            <span>(Cách nhanh nhất để gửi đơn hàng tới chúng tôi)</span>
+                        </a>
+                        <div class="product_meta">
+                            <span class="sku_wrapper">
+                                Mã: <span class="sku">CH-LTRĐT</span>
+                            </span>
+                        </div>
+                        <div class="social-icons share-icons share-row relative">
+                            <a href="" data-action="share/whatsapp/share" class="icon button circle is-outline tooltip whatsapp show-for-medium" title="Share on WhatsApp">
+                            <i class="fa-solid fa-phone"></i>
+                            </a>
+                            <a" data-label="Facebook" onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;" rel="noopener noreferrer nofollow" target="_blank" class="icon button circle is-outline tooltip facebook" title="Share on Facebook">
+                            <i class="fa-brands fa-facebook"></i>
+                            </a>
+                            <a href="" onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;" rel="noopener noreferrer nofollow" target="_blank" class="icon button circle is-outline tooltip twitter" title="Share on Twitter">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
+                            <a href="" rel="nofollow" class="icon button circle is-outline tooltip email" title="Email to a Friend">
+                                <i class="fa-solid fa-envelope"></i>
+                            </a>
+                            <a href="" onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;" rel="noopener noreferrer nofollow" target="_blank" class="icon button circle is-outline tooltip pinterest" title="Pin on Pinterest">
+                                <i class="fa-brands fa-pinterest"></i>
+                            </a>
+                            <a href="" target="_blank" class="icon button circle is-outline tooltip google-plus" onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;" rel="noopener noreferrer nofollow" title="Share on Google+">
+                                <i class="fa-brands fa-google"></i>
+                            </a>
+                            <a href="" onclick="window.open(this.href,this.title,'width=500,height=500,top=300px,left=300px');  return false;" rel="noopener noreferrer nofollow" target="_blank" class="icon button circle is-outline tooltip linkedin" title="Share on LinkedIn">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- .summary -->
+                    <div id="product-sidebar" class="col large-3 hide-for-medium ">
+                        <aside id="text-2" class="widget widget_text">
+                            <div class="textwidget">
+                                <div class="hotline-tu-van">
+                                    Mọi nhu cầu tư vấn về sản phẩm, vui lòng gọi trực tiếp hotline: <strong>094.8225678</strong>
+                                </div>
+                            </div>
+                        </aside>
+                        <aside id="text-3" class="widget widget_text">
+                            <span class="widget-title shop-sidebar">Thông tin cửa hàng</span>
+                            <div class="is-divider small"></div>
+                            <div class="textwidget">
+                                <p>
+                                    <strong>Cửa hàng tại Hà Nội</strong>
+                                </p>
+                                <p>- Địa chỉ: Số 106 ngõ 72 Nguyễn Trãi, Thanh Xuân, HN</p>
+                                <p>- ĐT: 0965962586 - 0948225879</p>
+                                <p>
+                                    <strong>Cửa hàng tại TP.HCM</strong>
+                                </p>
+                                <p>- Địa chỉ: Số 30/10 Dương Quảng Hàm, P5, Gò Vấp, Tp. HCM</p>
+                                <p>- ĐT: 0941299699 - 0941628000</p>
+                                <p>
+                                    <strong>Cửa hàng tại Hải Dương</strong>
+                                </p>
+                                <p>
+                                    <span style="font-size: 90%;">- Địa chỉ: Số 170 Bùi Thị Xuân, TP. Hải Dương</span>
+                                </p>
+                                <p>
+                                    <span style="font-size: 90%;">- ĐT: 0868801805</span>
+                                </p>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+                <!-- .row -->
+            </div>
+            <!-- .product-main -->
+            <div class="product-footer">
+                <div class="container">
+                    <div class="woocommerce-tabs container tabbed-content">
+                        <ul class="product-tabs small-nav-collapse tabs nav nav-uppercase nav-line nav-center">
+                            <li class="ux_global_tab_tab  active">
+                                <a href="#tab-ux_global_tab">Thông tin thanh toán</a>
+                            </li>
+                        </ul>
+                        <div class="tab-panels">
+                            <div class="panel entry-content active" id="tab-ux_global_tab">
+                                <h3>Thông tin thanh toán</h3>
+                                <strong>Ngân hàng Vietcombank:</strong>
+                                <p>
+                                    - Hoàng Minh Tuấn
+                                    </br>- STK: 0691000374599 </br>- Ngân hàng Vietcombank Việt Nam
+                                </p><strong>Ngân hàng Agribank:</strong>
+                                <p>
+                                    - Hoàng Minh Tuấn
+                                    </br>- STK: 2000206180703</br>- Ngân hàng Agribank Việt Nam
+                                </p>
+                            </div>
+                        </div>
+                        <!-- .tab-panels -->
+                    </div>
+                    <!-- .tabbed-content -->
+                </div>
+                <!-- container -->
+            </div>
+            <!-- product-footer -->
+        </div>
+        <!-- .product-container -->
+        <div class="devvn-popup-quickbuy" data-popup="popup-quickbuy" id="popup_content_2724">
+            <div class="devvn-popup-inner">
+                <div class="devvn-popup-title">
+                    <span>Đặt mua Chậu Gốm Lư Tròn Vát</span>
+                    <button type="button" class="devvn-popup-close"></button>
+                </div>
+                <div class="devvn-popup-content devvn-popup-content_2724 ">
+                    <div class="devvn-popup-content-left ">
+                        <div class="devvn-popup-prod">
+                            <div class="devvn-popup-img">
+                                <img src="../wp-content/uploads/2017/11/cay-trau-ba-de-vuong-do-co-lon-510x510-100x100.jpg" alt="" />
+                            </div>
+                            <div class="devvn-popup-info">
+                                <span class="devvn_title" >@Model.TenSp</span>
+                                <span class="devvn_price">
+                                    <span class="woocommerce-Price-amount amount">
+                                        @Model.GiaLonNhat<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                       @* <div class="devvn_prod_variable" data-simpleprice="50000">
+                            <form class="cart" action="" method="post" enctype='multipart/form-data'>
+                                <div class="quantity buttons_added">
+                                    <input type="button" value="-" class="minus button is-form">
+                                    <label class="screen-reader-text" for="quantity_6432e178bcea1">Số lượng</label>
+                                    <input type="number" id="quantity" class="input-text qty text" step="1" min="1" max="9999" name="quantity" value="1" title="SL" size="4" pattern="[0-9]*" inputmode="numeric" aria-labelledby="Chậu Gốm Lư Tròn Vát số lượng" />
+                                    <input type="button" value="+" class="plus button is-form">
+                                </div>
+                               
+                            <button class="single_add_to_cart_button button alt"><a>Thêm vào giỏ</a></button>
+                            </form>
+                        </div>*@
+                        Bạn vui lòng nhập đúng số điện thoại để chúng tôi sẽ gọi xác nhận đơn hàng trước khi giao hàng. Xin cảm ơn!
+                    </div>
+                    @*form thông tin người mua*@
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+   
+   var quantityInput = document.getElementById("quantity").value;
+
+   // Lấy thẻ nút plus
+    var plusButton = document.querySelector(".plus");
+   
+   // Thêm sự kiện click cho nút plus
+    plusButton.addEventListener("click", function() {
+    // Tăng giá trị số lượng lên 1
+        if(quantityInput>@ctsp.Slton){
+         alert("số lượng hàng trong kho không đủ")
+         }
+        else{
+            quantityInput = parseInt(quantityInput.value) + 1;
+        }
+
+    });
+    var plusButton = document.querySelector(".minus");
+
+    // Thêm sự kiện click cho nút -
+       plusButton.addEventListener("click", function() {
+    if(quantityInput===0){
+        quantityInput=0;
+     }
+    else{
+        quantityInput = parseInt(quantityInput.value) - 1;
+    }
+  
+    });
+   // var masp1 = $('#masp').data('masp');
+   //// masp=masp.
+   // var sl1 = $('#quantity').val();
+   // alert(masp1);
+   // alert(sl1)  ;
+    
+   
+   
+</script>
+<script>
+    $('.themvaogiohang').each(function () 
+	{
+		//var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+      
+		$(this).on('click', function () 
+		{
+			 
+			if ($('.log-in').data('dn') === "dangxuat")
+			{								
+				var soluong = document.getElementById("quantity").value;
+               //  alert('@ViewBag.MaKH');
+				var url = 'https://localhost:7240/api/GioHangAPI/themvaogiohang'
+					+ '?MaKH=' + '@ViewBag.MaKH'
+					+ '&MaSP=' + '@Model.MaSp'                   
+					+ '&DonGiaBan=' + '@Model.GiaNhoNhat'
+					+ '&SoLuong=' + soluong;
+				$.ajax({
+					url: url,
+					method: 'POST',
+					//contentType: 'json',
+					//dataType: 'json',
+					error: function (response) 
+					{
+                        alert("loi");
+						//swal("Lỗi khi thêm vào giỏ hàng!", "", "error");
+					},
+					success: function (reponse) 
+					{
+                         alert('Thanhcong');
+						swal(nameProduct, "Đã được thêm vào giỏ hàng!", "success");
+						
+					}
+				});
+			}
+            else{
+                alert("vui long dang nhap");
+            }
+		});
+	});
+</script>
+    <!-- shop container -->
+    <style>
+        .menu {
+            visibility: hidden;
+        }
+
+        .hien {
+            visibility: visible;
+        }
+    </style>
+    <script>
+        //$('#mega_menu').hide("fast");
+        $('#mega-menu-wrap').click(function () {
+            $('#mega_menu').toggleClass('hien');
+
+        });
+
+    </script>
+    

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<TTCM_Web.Models.THoaDonBan>
+
+@{
+    ViewData["Title"] = "CTDanhSachChoXN";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Danh sách xác nhận</h1>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Thêm mới</h5>
+        <div class="table-responsive">
+            <table id="zero_config" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>
+                            Ngày lập hóa đơn
+                        </th>
+                        <th>
+                            Tổng tiền
+                        </th>
+                       
+                        <th>
+                          Ghi chú
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MaKhachHangNavigation)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MaNhanVienNavigation)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NgayHoaDon)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TongTienHd)
+                            </td>
+                           
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GhiChu)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaKhachHangNavigation.MaKhanhHang)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaNhanVienNavigation.MaNhanVien)
+                            </td>
+                            <td>
+                                <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.MaHoaDon">Xác nhận</a> |
+                                <a class="btn btn-success" asp-action="Details" asp-route-id="@item.MaHoaDon">Từ chối</a> |
+                               
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

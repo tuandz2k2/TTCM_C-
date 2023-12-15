@@ -1,0 +1,169 @@
+﻿
+@{
+    ViewData["Title"] = "TKSanPham";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+
+    BtTtcmWebContext db = new BtTtcmWebContext();
+    var sp = db.TDanhMucSps.ToList();
+}
+@model IEnumerable<TDanhMucSp>
+<div class="row category-page-row">
+    <div class="col large-3 hide-for-medium ">
+        <div id="shop-sidebar" class="sidebar-inner col-inner">
+            <aside id="text-4" class="widget widget_text">
+                <span class="widget-title shop-sidebar">Thông tin cửa hàng</span>
+                <div class="is-divider small"></div>
+                <div class="textwidget">
+                    <p>
+                        <strong>Cửa hàng tại Hà Nội</strong>
+                    </p>
+                    <p>– Địa chỉ: Số 106 ngõ 72 Nguyễn Trãi, Thanh Xuân, HN</p>
+                    <p>– ĐT: 0965962586 – 0948225879</p>
+                    <p>
+                        <strong>Cửa hàng tại TP.HCM</strong>
+                    </p>
+                    <p>–Địa chỉ: Số 10 Phố Thành Trung ,Huyện Gia Lâm ,Hà Nội</p>
+                    <p>– ĐT: 0941299699 – 0967771928</p>
+                    <p>
+                        <strong>Cửa hàng tại Hải Dương</strong>
+                    </p>
+                    <p>
+                        <span style="font-size: 90%;">– Địa chỉ: Số 10 Phố Thành Trung ,Huyện Gia Lâm ,Hà Nội</span>
+                    </p>
+                    <p>
+                        <span style="font-size: 90%;">– ĐT: 0967771928</span>
+                    </p>
+                </div>
+            </aside>
+
+            <aside id="woocommerce_products-2" class="widget woocommerce widget_products">
+                <span class="widget-title shop-sidebar">Sản phẩm mới</span>
+                <div class="is-divider small"></div>
+                <ul class="product_list_widget">
+                    @for (var i = sp.Count - 6; i < sp.Count; i++)
+                    {
+                        <li>
+                            <a asp-controller="SanPham" asp-action="ChiTietSanPham" asp-route-maSp="@sp[i].MaSp">
+                                <img width="100" height="100" src="../access/images/@sp[i].AnhDaiDien" class="attachment-woocommerce_gallery_thumbnail size-woocommerce_gallery_thumbnail" alt="" />
+                                <span class="product-title">@sp[i].TenSp</span>
+                            </a>
+                            <div class="star-rating">
+                                <span style="width:100%">
+                                    Được xếp hạng <strong class="rating">5.00</strong>
+                                    5 sao
+                                </span>
+                            </div>
+                            <del>
+                                <span class="woocommerce-Price-amount amount">
+                                    @sp[i].GiaLonNhat<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                </span>
+                            </del>
+                            <ins>
+                                <span class="woocommerce-Price-amount amount">
+                                    @sp[i].GiaNhoNhat<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                </span>
+                            </ins>
+                        </li>
+                    }
+
+                </ul>
+            </aside>
+        </div>
+        <!-- .sidebar-inner -->
+    </div>
+    <!-- #shop-sidebar -->
+    <div class="col large-9">
+        <div class="shop-container">
+            <div class="woocommerce-notices-wrapper"></div>
+            <div class="products row row-small large-columns-4 medium-columns-3 small-columns-2 has-equal-box-heights equalize-box">
+                @foreach (var i in Model)
+                {
+
+                    <div class="product-small col has-hover post-469 product type-product status-publish has-post-thumbnail first instock shipping-taxable purchasable product-type-simple">
+                        <div class="col-inner">
+                            <div class="badge-container absolute left top z-1"></div>
+
+                            <div class="product-small box ">
+                                <div class="box-image">
+                                    <div class="image-zoom">
+                                        <a href="@Url.Action("ChiTietSanPham","SanPham",new {maSp=i.MaSp})">
+                                            <img width="300" height="300" src="../access/images/@i.AnhDaiDien" class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" />
+                                        </a>
+                                    </div>
+                                    <div class="image-tools is-small top right show-on-hover"></div>
+                                    <div class="image-tools is-small hide-for-small bottom left show-on-hover"></div>
+                                    <div class="image-tools grid-tools text-center hide-for-small bottom hover-slide-in show-on-hover"></div>
+                                </div>
+                                <!-- box-image -->
+                                <div class="box-text box-text-products text-center grid-style-2">
+                                    <div class="title-wrapper">
+                                        <p class="name product-title">
+                                            <a href="/SanPham/ChiTietSanPham">@i.TenSp</a>
+                                        </p>
+                                    </div>
+                                    <div class="price-wrapper">
+                                        <div class="star-rating">
+                                            <span style="width:80%">
+                                                Được xếp hạng <strong class="rating">4.00</strong>
+                                                5 sao
+                                            </span>
+                                        </div>
+                                        <span class="price">
+                                            <span class="woocommerce-Price-amount amount">
+                                                @i.GiaLonNhat<span class="woocommerce-Price-currencySymbol">&#8363;</span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="add-to-cart-button">
+                                        <a href="@Url.Action("CartTT","Cart",new {maSp = @i.MaSp, sl = 1})" rel="nofollow" data-product_id="469" class="ajax_add_to_cart add_to_cart_button product_type_simple button primary is-outline mb-0 is-small">Thêm vào giỏ</a>
+                                    </div>
+                                </div>
+                                <!-- box-text -->
+                            </div>
+                            <!-- box -->
+                        </div>
+                        <!-- .col-inner -->
+                    </div>
+                    <!-- col -->
+                }
+
+            </div>
+            <!-- row -->
+        </div>
+        <!-- shop container -->
+    </div>
+</div>
+<ul class="page-numbers nav-pagination links text-center">
+    <li>
+        <span aria-current='page' class='page-number current'>1</span>
+    </li>
+    <li>
+        <a class='page-number' href='page/2/index.html'>2</a>
+    </li>
+    <li>
+        <a class="next page-number" href="page/2/index.html">
+            <i class="icon-angle-right"></i>
+        </a>
+    </li>
+</ul>
+<style>
+    .menu {
+        visibility: hidden;
+    }
+
+    .hien {
+        visibility: visible;
+    }
+</style>
+<script>
+    //$('#mega_menu').hide("fast");
+    $('#mega-menu-wrap').click(function () {
+        $('#mega_menu').toggleClass('hien');
+
+    });
+
+</script>
+
+
